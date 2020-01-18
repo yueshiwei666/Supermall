@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-   <tabbar/>
+     <Maintabbar></Maintabbar>
   </div>
 </template>
 
 <script>
-import tabbar from './component/base_project/tabbar/tabbar.vue'
+import Maintabbar from './component/base_project/tabbar/Maintabbar'
 import $ from 'jquery' /* 导入jquery */
 export default {
   name: 'app',
   components:{
-    tabbar
+    Maintabbar
   }
 }
 </script>
