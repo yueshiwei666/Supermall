@@ -1,11 +1,12 @@
 <template>
   <div id="app">
+     <router-view></router-view>
      <Maintabbar></Maintabbar>
   </div>
 </template>
 
 <script>
-import Maintabbar from './component/base_project/tabbar/Maintabbar'
+import Maintabbar from './components/base_project/tabbar/Maintabbar'
 import $ from 'jquery' /* 导入jquery */
 export default {
   name: 'app',
