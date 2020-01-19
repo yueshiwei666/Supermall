@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Maintabbar from './components/base_project/tabbar/Maintabbar'
+import Maintabbar from './components/noPublic/tabbar/Maintabbar'
 import $ from 'jquery' /* 导入jquery */
 export default {
   name: 'app',
