@@ -5,8 +5,9 @@
             <!-- 但是  :path="/home  加了这个v-bing的话就是把/home当成一个变量了" -->
             <tabbarItem path='/home' activecolor='red'> 
                  <!-- 在src中的 @就是指项目的根目录 src -->
-                <img slot='icon1' src="@/assets/img/1.png" alt="">
-                <img slot='icon2' src="@/assets/img/2.png" alt="">
+                 <!-- 或者也可以用这个  ~  符号来表示   两种都可以-->
+                <img slot='icon1' src="~assets/img/1.png" alt="">
+                <img slot='icon2' src="~assets/img/2.png" alt="">
                 <strong slot='text'>首页</strong>
             </tabbarItem>
 

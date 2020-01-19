@@ -5,8 +5,8 @@ import VueRouter from 'vue-router'
 /*导入对应的路由显示的组件 */
       //import home from '../views/home.vue'
       //上面的那种形式导入不好，但是我忘了怎么不好
+          //下面是文件的懒加载
 const classify = () => import('../views/classify.vue')
-
 const home = () => import('../views/home.vue')
 const myself = () => import('../views/myself.vue')
 const shopping = () => import('../views/shopping.vue')
