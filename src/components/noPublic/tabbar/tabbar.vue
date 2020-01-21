@@ -23,7 +23,7 @@
         
         display:flex;
         
-        background: rgba(154, 146, 146, 0.2);
+        background: rgb(213, 209, 209);
         box-shadow:0px -10px 10px rgba(233, 110, 110, 0.2);
     }
 </style>

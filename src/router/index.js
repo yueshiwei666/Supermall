@@ -6,10 +6,10 @@ import VueRouter from 'vue-router'
       //import home from '../views/home.vue'
       //上面的那种形式导入不好，但是我忘了怎么不好
           //下面是文件的懒加载
-const classify = () => import('../views/classify.vue')
-const home = () => import('../views/home.vue')
-const myself = () => import('../views/myself.vue')
-const shopping = () => import('../views/shopping.vue')
+const classify = () => import('views/classify/classify.vue')
+const home = () => import('views/home/home.vue')
+const myself = () => import('views/myself/myself.vue')
+const shopping = () => import('views/shopping/shopping.vue')
 
 //安装vue-router
 Vue.use(VueRouter)

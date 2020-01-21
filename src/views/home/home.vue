@@ -6,7 +6,16 @@
         </shoppingStreet>
 
         <!-- 轮播图的图片 -->
-        <img v-for="(value,index) in banner.list" :src='banner.list[index].image'  alt="">
+        <!-- <div  class='slide_img'
+              v-for="(value,index) in banner.list"
+              :key='index'>
+        <img  :src='value.image'  alt="">
+        </div> -->
+       
+        <img class='slide_img' src='https://s10.mogucdn.com/mlcdn/c45406/180926_45fkj8ifdj4l824l42dgf9hd0h495_750x390.jpg' alt="">
+        
+
+
 
     </div>
 </template>
@@ -14,6 +23,8 @@
 <script>
     //导入的组件
     import shoppingStreet from 'components/public/购物街.vue'
+    /* 轮播图的组件 */
+    
 
 
     //使用axios请求的数据
@@ -22,8 +33,8 @@
     export default {
         data(){
             return {
-                banner:'',  /* 这个是保存的数据 */
-                keyword:''
+                banner:[],  /* 这个是保存的数据 */
+                keyword:[]
             }
         },
         components:{
@@ -33,11 +44,26 @@
             homedata().then(res =>{
                 this.banner = res.data.data.banner;
                 this.keyword = res.data.data.dKeyword;
+            }).catch(err =>{
+                alert('数据失败')
             })
+        },
+        methods: {
+            
+        },
+        activated(){
+            
+        },
+        deactivated(){
+            
         }
     }
 </script>
 
 <style scoped>
-    
+    .slide_img{
+        width: 100%;
+        height: 100%;
+        margin-top:44px;
+    }
 </style>

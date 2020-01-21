@@ -33,7 +33,7 @@
         height: 44px;
         line-height: 44px;
 
-        background-color: rgb(236, 10, 10,.4);
+        background-color: pink;
     }
     .left{
         flex: 1;
