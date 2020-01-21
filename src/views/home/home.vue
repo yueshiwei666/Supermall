@@ -1,57 +1,87 @@
 <template>
   <div id="home_box">
-    <!-- 最上方购物街组件的使用 -->
-    <shoppingStreet>
-      <strong slot="center">购物车</strong>
-    </shoppingStreet>
+    <BScroll class="content"> 
+        <!-- 最上方购物街组件的使用 -->
+        <shoppingStreet>
+          <strong slot="center">购物车</strong>
+        </shoppingStreet>
 
-    <!-- 轮播图的图片 -->
-    <!-- <div  class='slide_img'
-              v-for="(value,index) in banner.list"
-              :key='index'>
-        <img  :src='value.image'  alt="">
-    </div>-->
-    <img
-      class="slide_img"
-      src="https://s10.mogucdn.com/mlcdn/c45406/180926_45fkj8ifdj4l824l42dgf9hd0h495_750x390.jpg"
-      alt
-    />
+        <!-- 轮播图的图片 -->
+        <!-- <div  class='slide_img'
+                v-for="(value,index) in banner.list"
+                :key='index'>
+          <img  :src='value.image'  alt="">
+        </div>-->
+        <img
+          class="slide_img"
+          src="https://s10.mogucdn.com/mlcdn/c45406/180926_45fkj8ifdj4l824l42dgf9hd0h495_750x390.jpg"
+          alt
+        />
 
-    <!-- 推荐的信息 -->
-    <recommend :data="recommend"></recommend>
+        <!-- 推荐的信息 -->
+        <recommend :data="recommend"></recommend>
 
-    <!-- 就是推荐下面的图片 -->
-    <div class="recommend">
-      <img src="~assets/img/img.jpg" alt />
-    </div>
+        <!-- 就是推荐下面的图片 -->
+        <div class="recommend">
+          <img src="~assets/img/img.jpg" alt />
+        </div>
 
-    <!-- 三个滑动的标题效果展示 -->
-    <texts :text='arr'>
-    </texts>
+        <!-- 三个滑动的标题效果展示 -->
+        <texts :text="arr" class="texts"></texts>
 
-    <ul>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>123</li>
-      <li>qweqweqwe</li>
-    </ul>
+        <div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+          <div>11</div>
+        </div>
+    </BScroll>
   </div>
 </template>
 
@@ -59,15 +89,17 @@
 /* 购物街组件 */
 import shoppingStreet from "components/public/购物街";
 /* 轮播图的组件 */
-
+//我会写的等等啊
 /* 推荐信息的组件 */
 import recommend from "./home_components/推荐得信息";
-
 /* 文字点击效果组件 */
-import texts from './home_components/text.vue'
+import texts from "./home_components/text.vue";
 
+//插件
 //使用axios请求的数据
 import { homedata } from "network/homedata.js";
+/* better-scroll 滚动插件 */
+import BScroll from "plug-in/滚动的插件/BetterScroll.vue";
 
 export default {
   data() {
@@ -75,13 +107,14 @@ export default {
       banner: [] /* 轮播图数据数据 */,
       keyword: [],
       recommend: "", //推荐信息
-      arr:['流行','新款','精选']
+      arr: ["流行", "新款", "精选"]
     };
   },
   components: {
     shoppingStreet,
     recommend,
-    texts
+    texts,
+    BScroll
   },
   created() {
     //在组件创建好之后就执行函数中的代码   生命周期函数
@@ -112,5 +145,15 @@ export default {
 }
 .recommend img {
   width: 100%;
+}
+.texts {
+  display: block;
+  position: sticky;
+  top: 44px;
+  background-color: #fff;
+}
+.content{
+  height: 300px;
+
 }
 </style>

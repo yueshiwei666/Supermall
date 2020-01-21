@@ -1,10 +1,10 @@
 <template>
     <div id="big">
-        <div class='item' v-for='(value,index) in data.list' :key='index'>  <!-- 推荐的信息 -->
-            <a :href='value.link'>
-                <img :src="value.image" alt="">
+        <div class='item' align='center' v-for='(value,index) in data.list' :key='index'>  <!-- 推荐的信息 -->
+            <!-- <a :href='value.link' class="a"> -->
+                <img :src="value.image" alt="" align='center'>
                 <p>{{value.title}}</p>
-            </a>
+            <!-- </a> -->
         </div>
     </div>
 </template>
@@ -31,12 +31,11 @@
     }
     .item{
        flex:1;
-       position: relative;
-       
-      
     }
-    .item img{
+    
+    img{
         height:80px;
+ 
     }
     .item p{
         text-align:center;

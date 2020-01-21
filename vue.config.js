@@ -10,6 +10,7 @@ module.exports = {
                 'store':"@/store", /* vuex */
                 'network':'@/network', /* 数据请求 */
                 'common':'@/common', /* 放公共的组件 */
+                'plug-in':'@/plug-in'
             }
         }
     }
