@@ -1,6 +1,6 @@
 <template>
     <div id="">
-        <tabbar>
+        <tabbar class="qqq">
             <!-- 这个 /home字符串赋值给了path  可以在组件内部用props来获取这个path-->
             <!-- 但是  :path="/home  加了这个v-bing的话就是把/home当成一个变量了" -->
             <tabbarItem path='/home' activecolor='red'> 
@@ -48,5 +48,7 @@
 </script>
 
 <style scoped>
-    
+    .qqq{
+        background: rgb(226, 223, 223);
+    }
 </style>

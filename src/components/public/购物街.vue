@@ -28,6 +28,7 @@
         left: 0px;
         right: 0px;
         display: flex;
+        z-index: 10;
 
         width: 100%;
         height: 44px;

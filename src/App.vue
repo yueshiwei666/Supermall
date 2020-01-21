@@ -1,7 +1,7 @@
 <template>
   <div id="app">
      <router-view></router-view>
-     <Maintabbar></Maintabbar>
+     <Maintabbar class="background"></Maintabbar>
   </div>
 </template>
 
@@ -19,4 +19,7 @@ export default {
 <style scoped>
 /*这个scoped是css的作用域 */
 @import "./assets/css.css"; /* 导入css的文件的方法 */
+  .background{
+      background-color: red;
+  }
 </style>
