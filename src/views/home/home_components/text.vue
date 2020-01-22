@@ -31,7 +31,7 @@
         methods:{
             click(index){
                 this.current_index = index;
-                
+                this.$emit('textclick',index);
             }
         },
         created(){
@@ -49,7 +49,7 @@
     }
     .div{
         width: 100%;
-        height: 50px;
+        height: 45px;
         display:flex;
 
     }
@@ -68,7 +68,6 @@
     .text div{
         width: 40px;
         height: 5px;
-        
         margin: 5px auto;
         
     }
