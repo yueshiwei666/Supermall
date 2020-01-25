@@ -16,27 +16,32 @@
     export default {
         data(){
             return {
-                scroll:null
+                scroll:''
             }
         },
         created(){  /* 在组件创建好之后，不可以获取元素 */
-
+            console.log(BScroll);
+            
         },
         mounted(){  /* 在组件创建好之后，他可以获取挂载的元素 */
           this.scroll = new BScroll(this.$refs.wrapper,{
-                click:true,
                 probeType:3,//2是不能监听惯性滚动  3是可以监听所有的
             })
 
-            this.scroll.on('scroll',(qq) =>{
+            /* this.scroll.on('scroll',(qq) =>{
                 console.log(qq);
                 
-            })
+            }) */
+         
+          
+            
         }
     
     }
 </script>
 
 <style scoped>
-    
+    .wrapper{
+        height: 400px;;
+    }
 </style>

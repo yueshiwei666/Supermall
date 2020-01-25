@@ -1,11 +1,11 @@
 <template>
   <div id="home_box">
-    <BScroll class="content"> 
+    
         <!-- 最上方购物街组件的使用 -->
-        <shoppingStreet>
+        <shoppingStreet class="shopping">
           <strong slot="center">购物车</strong>
         </shoppingStreet>
-
+    <BScroll class="content"> 
         <!-- 轮播图的图片 -->
         <!-- <div  class='slide_img'
                 v-for="(value,index) in banner.list"
@@ -33,6 +33,109 @@
         <goods :goods="goodss"></goods>
 
     </BScroll>
+
+    <div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+      <div>1111111</div>
+    </div>
   </div>
 </template>
 
@@ -178,8 +281,12 @@ export default {
   background-color: #fff;
   z-index: 10;
 }
+.shopping{
+  position: absolute;
+}
 .content{
-  height: 400px;
-
+  
+  height: 100vh;   /* 100vh  就是100% */
+  overflow: hidden;
 }
 </style>
