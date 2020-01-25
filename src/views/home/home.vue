@@ -283,7 +283,7 @@ export default {
        //this.$refs.scroll.scroll.refresh();   防止多次的使scroll刷新需要  写一个debounce防止多次刷新的函数
           this.$refs.scroll.scroll.refresh();
      })
-  },
+  },//
   created() {
     
     
