@@ -1,6 +1,8 @@
 <template>
     <div id="" class="item">
-        <img :src="goods.show.img" alt="">
+                                         <!-- 这个@load是vue内部自带的指令，
+                                            意思是在加载完成之后会掉用你后面的方法 -->
+        <img :src="goods.show.img" alt=""   @load="imgload">
         <p class="p">{{goods.title}}</p>
         <div class='span1' align='center'>
             <span class="span2">{{goods.price}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -22,6 +24,17 @@
         created(){
             
             
+        },
+        methods:{
+             imgload(){
+                 /* 这里用到事件的总线，就是任何一个vue的组件都可以访问到这个里面的方法 */
+                 /*需要在main文件中引用一下这个因为是没有这个方法的，需要给他付一个实例的vue
+                  this.$bus----->事件的总线管理中心 */
+
+                  //当一张图片加载完成就对scroll做一个刷新  refresh()
+                  this.$bus.$emit('imgLoad') 
+                  /* 用的时候就  this.$bus.$on('事件的名字'，执行的函数) */
+             }
         }
     
     }

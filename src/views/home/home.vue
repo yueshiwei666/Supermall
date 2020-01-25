@@ -5,7 +5,21 @@
         <shoppingStreet class="shopping">
           <strong slot="center">购物车</strong>
         </shoppingStreet>
-    <BScroll class="content"> 
+
+        <!-- 返回顶部的图片 -->
+        <!-- !!!切记组件是没有监听事件的，必须在组件的后面加上
+        点native转换为原生的元素才能
+        原生的元素是有监听事件的所以不用native -->
+        <base-top @click.native='top'
+                  class="top"
+                  ref="top"
+                  v-show='show_hide_top'></base-top>
+
+    <BScroll class="content" 
+             ref="scroll"
+             @scroll='monitor'
+             :pullUpLoad='true'
+             @pullUpLoad='pullUpLoad'> 
         <!-- 轮播图的图片 -->
         <!-- <div  class='slide_img'
                 v-for="(value,index) in banner.list"
@@ -150,7 +164,8 @@ import recommend from "./home_components/推荐得信息";
 import texts from "./home_components/text.vue";
 /* 商品数据的获取 */
 import goods from 'components/public/HomeGoods/goods'
-
+/* 返回顶部的点击按钮 */
+import baseTop from 'components/public/baseTop/baseTop.vue'
 //插件
 //使用axios请求的数据
 import { homedata,homedata2} from "network/homedata.js";
@@ -164,7 +179,8 @@ export default {
     recommend,
     texts,
     BScroll,
-    goods
+    goods,
+    baseTop
   },
   data() {
     return {
@@ -177,7 +193,8 @@ export default {
         'new':{page:0,list:[]},  //保存新款数据
         'sell':{page:0,list:[]}  //保存精选数据
       },
-      type:'pop'
+      type:'pop',
+      show_hide_top:false
     }
   },
   computed: {
@@ -187,8 +204,23 @@ export default {
   },
   methods: {
     /* 自定义事件的方法 */
+    
+    /*完成上拉加载更多的数据*/
+    pullUpLoad(){
+        this.getHomegoods(this.type)
+        
+    },
 
-
+    /*监听回到顶部按钮的显示和隐藏*/
+    monitor(location){
+      let num = -(location.y)
+      this.show_hide_top = num > 500
+      //num > 500 ? this.show_hide_top = true :this.show_hide_top = false 
+    },
+    top(){   /* 点击回到顶部的函数 */
+      this.$refs.scroll.basetop(0,0);
+    },
+   
     textclick(index){  /* 点击text组件中的3个文字实现goods对应的数据 */
        if(index == 0){
           this.type = 'pop'
@@ -220,30 +252,41 @@ export default {
       .then(result =>{
         this.goods[type].list.push(...result.data.data.list);
         this.goods[type].page +=1
+
+        /*刷新一次上拉加载更多，不然下次这个方法使用无效   插件scroll中this.scroll.on('pullingUp',function(){})  后面的函数时不会进行调用的*/
+        this.$refs.scroll.scroll.finishPullUp();
       })
       .catch(err =>{
         alert('商品数据请求失败');
       })
       
+      
+    },
+
+    /* 处理多次使scroll刷新的  防抖函数 */
+    debounce(func,dalay){
+        let timer = null;
+        return function(){
+          if(timer){clearTimeout(timer)}
+          timer = setTimeout(() => {
+            func.apply(this.args)
+          }, dalay);
+        }
     }
-
-
-    // getHomegoods(type){
-    //     var page = this.goods[type].page;
-    //     homedata2(type,page)
-    //     .then(result =>{
-    //        this.goods[type].list.push(...result.data.data.list);
-    //        this.goods[type].page +=1
-    //     })
-    //     .catch(err =>{
-    //       alert('商品数据请求失败')
-    //     })
-    // }
-
-
   },
-  
+  mounted() {
+    //const refresh = this.debounce(this.$refs.scroll.scroll.refresh,500)
+        /* 当图片都加载完成的时候对scroll组件做一个刷新 */
+             /* 这个$on是在某个地方用$emit('发射的事件')来使用的方法 */
+             /* 在组件的就是  <组件  @发射事件的名字='函数'  /> */
+     this.$bus.$on('imgLoad',() =>{  //在vue中尽量不要使用function里面的this都是window
+       //this.$refs.scroll.scroll.refresh();   防止多次的使scroll刷新需要  写一个debounce防止多次刷新的函数
+          this.$refs.scroll.scroll.refresh();
+     })
+  },
   created() {
+    
+    
     //在组件创建好之后就执行函数中的代码   生命周期函数
     this.getHomedata() //获取首页的大量数据
 
@@ -252,8 +295,8 @@ export default {
      this.getHomegoods('pop') 
      this.getHomegoods('new')
      this.getHomegoods('sell')
-      
   },
+  
   activated() {
 
 
@@ -285,8 +328,24 @@ export default {
   position: absolute;
 }
 .content{
-  
-  height: 100vh;   /* 100vh  就是100% */
-  overflow: hidden;
+   /*根据移动设备的不同对于设置移动端来说
+   出现了   1vw   1vh
+   1vw视口就是手机屏幕的1%
+   1vh视口就是手机屏幕的1%*/
+   /* 还有1em = 16px   em的使用在于他的父元素是多少
+   如果他的父元素是100px  你在他后代元素中写0.75em
+   就是他这个后代元素是100*0.75=（75）px*/
+    height:100vh;   /* 100vh  就是100% */
+
+    overflow: hidden;
+    
 }
+.top{
+   position: absolute;
+   z-index: 1;
+   top: 82%;
+   right: 0%;
+   
+}
+
 </style>

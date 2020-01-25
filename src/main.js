@@ -7,8 +7,11 @@ import router from './router'
 
 Vue.config.productionTip = false
 
-Vue.prototype.$ = $; 
+//创建一个事件的总线的事件，可以让每一个组件在都可以访问的到，类似vuex数据管家
+Vue.prototype.$bus = new Vue();
+
 //使用命令行安装一下jquery，在来导入jq和加入到原型中jq就可以使用
+Vue.prototype.$ = $; 
 
 new Vue({
   router,
