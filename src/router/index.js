@@ -10,6 +10,7 @@ const classify = () => import('views/classify/classify.vue')
 const home = () => import('views/home/home.vue')
 const myself = () => import('views/myself/myself.vue')
 const shopping = () => import('views/shopping/shopping.vue')
+const detail =() => import('views/detail/detail.vue')
 
 //安装vue-router
 Vue.use(VueRouter)
@@ -35,6 +36,11 @@ const routes = [
     {
         path:'/myself',
         component:myself
+    },                               //这个就是iid，这个是随便举的例子
+    {          //在外面用this.$router.push('/detail'+134313215)
+                            //括号后面可以修改的值
+        path:'/detail/:iid',  /* 这个iid是数据，没有他详情页面不能做 */
+        component:detail
     }
 ]
    

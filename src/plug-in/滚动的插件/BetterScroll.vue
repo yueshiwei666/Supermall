@@ -64,7 +64,18 @@
                          /*第一个参数是距离x的距离 */
                          /* 第二个参数是距离上面的距离 */
                          /* 第三个是需要多长的时候返回到那里 */
-                this.scroll.scrollTo(x,y,time);
+               this.scroll && this.scroll.scrollTo(x,y,time);
+            },
+            refresh(){
+                this.scroll.refresh();
+                console.log('betterScroll一共刷新了');
+                
+            },
+            getscrollY(){  //把y值返回出去
+                return this.scroll ? this.scroll.y : 0
+            },
+            scrollTo(x,y){  //返回的位置
+                this.scroll && this.scroll.scrollTo(x,y)
             }
         }
           
