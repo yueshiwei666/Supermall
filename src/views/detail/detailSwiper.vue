@@ -45,7 +45,7 @@ export default {
   .div{
       position: relative;
       top: 44px;
-    height: 250px;
+    height: 230px;
     overflow: hidden;
   }
 </style>
