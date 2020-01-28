@@ -194,7 +194,8 @@ export default {
         'sell':{page:0,list:[]}  //保存精选数据
       },
       type:'pop',
-      show_hide_top:false
+      show_hide_top:false,
+      saveY:0
     }
   },
   computed: {
@@ -202,6 +203,7 @@ export default {
       return this.goods[this.type].list
     }
   },
+  
   methods: {
     /* 自定义事件的方法 */
     
@@ -266,22 +268,22 @@ export default {
     /* 处理多次使scroll刷新的  防抖函数 */
     debounce(func,dalay){
         let timer = null;
-        return function(){
+        return function(...args){
           if(timer){clearTimeout(timer)}
           timer = setTimeout(() => {
-            func.apply(this.args)
+            func.apply(this,args)
           }, dalay);
         }
     }
   },
   mounted() {
-    //const refresh = this.debounce(this.$refs.scroll.scroll.refresh,500)
+    const refresh = this.debounce(this.$refs.scroll.refresh,200)
         /* 当图片都加载完成的时候对scroll组件做一个刷新 */
              /* 这个$on是在某个地方用$emit('发射的事件')来使用的方法 */
              /* 在组件的就是  <组件  @发射事件的名字='函数'  /> */
      this.$bus.$on('imgLoad',() =>{  //在vue中尽量不要使用function里面的this都是window
        //this.$refs.scroll.scroll.refresh();   防止多次的使scroll刷新需要  写一个debounce防止多次刷新的函数
-          this.$refs.scroll.scroll.refresh();
+          refresh();
      })
   },//
   created() {
@@ -296,12 +298,25 @@ export default {
      this.getHomegoods('new')
      this.getHomegoods('sell')
   },
-  
-  activated() {
-
-
+  activated() { //活跃的组件执行的函数内容
+    //在app中使用<keep-alive>发挥作用
+      this.$refs.scroll.scrollTo(0,this.saveY)
+       //防止进入home页面不能滚动，最好对scroll做一个刷新
+      this.$refs.scroll.refresh();
   },
-  deactivated() {}
+  deactivated() {  //死亡之前执行的函数
+   //在app中使用<keep-alive>发挥作用
+       //在离开之前就记录home组件的位置
+       this.saveY = this.$refs.scroll.getscrollY();
+  },
+  stroyed(){
+     //不详
+    console.log('穿件的函数');
+  },
+  destroyed() {  //消失之前执行的函数的内容
+    //不在app中使用keep-alive发挥作用
+    console.log('222');
+  }     
 };
 </script>
 
@@ -325,7 +340,8 @@ export default {
   z-index: 10;
 }
 .shopping{
-  position: absolute;
+  line-height: 44px;
+  background: rgb(243, 202, 209);
 }
 .content{
    /*根据移动设备的不同对于设置移动端来说

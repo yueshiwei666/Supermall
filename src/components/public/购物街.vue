@@ -1,5 +1,4 @@
 <template>
-    <div id="">
         <div class='div'>
             <div class="left">
                 <slot name="left"></slot>
@@ -11,7 +10,6 @@
                 <slot name="right"></slot>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
@@ -32,19 +30,18 @@
 
         width: 100%;
         height: 44px;
-        line-height: 44px;
+        
 
-        background-color: pink;
+        
     }
     .left{
         flex: 1;
         text-align: left;
     }
     .center{
-        flex: 1;
+        flex: 2;
         text-align: center;
-        color: white;
-        font-size: 20px;
+
     }
     .right{
         flex: 1;

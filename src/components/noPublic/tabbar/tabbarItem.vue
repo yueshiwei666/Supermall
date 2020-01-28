@@ -40,7 +40,7 @@
         computed:{  /* It is 计算属性 执行时间：在组件创建的时候自动执行一次和在函数内部有数据发生变化的时候执行 */
             active(){
                 //这个就是在上面用的时候用这个return返回一个false或者是true来显示图片和文字的颜色
-                    //this.$route 就是处于活跃的路由
+                    //this.$route 就是获取处于活跃的路由
                return this.$route.path.indexOf(this.path) !== -1
             },
             activeColor(){
