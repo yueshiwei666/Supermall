@@ -15,7 +15,15 @@
             </div>
         </nav-bar>
 
-        <scroll class="scrolll" ref="scroll">
+        <!-- 返回顶部的按钮啊 -->
+        <basetop v-show="showtop"
+                 class="basetop"
+                 @click.native='basetops'></basetop>
+
+
+        <scroll class="scrolll"
+                ref="scroll"
+                @detail='detailscroll'>
                 <!-- 轮播图的展示 -->
             <detailSwiper :data='slideshow' />
                 
@@ -31,6 +39,12 @@
             <!-- 展示第二大项的参数的信息了 -->
             <detailparams :detailparams='goodsparam'></detailparams>
 
+            <!--展示评论信息-->
+            <detailcommentInfo :detailcommentInfo='detailcommentInfo'></detailcommentInfo>
+            
+            <!-- 展示推荐的信息 -->
+            <goodss class="goodss" :goods='getdetailrecommend' ></goodss>
+
             <br> <br> <br> <p></p>
        </scroll>
     </div>
@@ -43,10 +57,13 @@ import detailSwiper from './detailSwiper'  //轮播图的组件
 import datailbaseInfo from './detailbaseInfo'  //轮播图下面基础信息
 import datailshop from './detailshop'  //商品的数展示
 import datailgoods from './detailgoods'  //最后的图片的数据
-import detailparams from './detailparams'
+import detailparams from './detailparams'  
+import detailcommentInfo from './detailcommentInfo'
+import goodss from './goods.vue'
+import basetop from 'components/public/baseTop/baseTop.vue'
 
 /* 网络请求本页的数据 */
-import {getdetail,goods,shop,goodsparam} from 'network/detail.js'
+import {getdetail,goods,shop,goodsparam,getdetailrecommend} from 'network/detail.js'
 export default {
     name:'Detail',
     data() {
@@ -59,7 +76,10 @@ export default {
             goods:{},
             shop:{},
             images:{},
-            goodsparam:{}
+            goodsparam:{},
+            detailcommentInfo:{},
+            getdetailrecommend:[],
+            showtop:false
         }
     },
     components:{
@@ -69,7 +89,10 @@ export default {
         datailbaseInfo,
         datailshop,
         datailgoods,
-        detailparams
+        detailparams,
+        detailcommentInfo,
+        goodss,
+        basetop
         
     },
     created() {
@@ -88,7 +111,7 @@ export default {
             //这里需要把轮播图下面的杂乱的数据整合到一个对象goods中goods中有
             //已经整合好的数据了，之后就访问就可以了
             var data = result.data.result; //同步到老师的数据中
-            console.log(data);
+            
             
             this.goods = new goods(data.itemInfo,data.columns,data.shopInfo.services);
             
@@ -99,27 +122,64 @@ export default {
 
             this.goodsparam = new goodsparam(data.itemParams.info,
             data.itemParams.rule)
-            
+
+            if(data.rate.cRate !== 0){ //判断有没有值啊
+                this.detailcommentInfo = data.rate.list[0]
+            }
+
         })
         .catch(err =>{
             alert('详情页面的数据获取失败')
         })
 
+        //获取推荐的信息页面
+        getdetailrecommend()
+        .then(result =>{
+            this.getdetailrecommend = result.data.data.list;
+           
+            
+        })
+        .catch(err =>{
+            alert('推荐信息获取失败')
+        })
+
+        
+    },
+    mounted() {
+        //获取事件的获取元素的一般最会写在mounted里面
         this.$bus.$on('image',() =>{
             this.$refs.scroll.refresh();
         })
-    },
-    mounted() {
 
+        this.$bus.$on('img',() =>{
+             this.$refs.scroll.refresh();
+        })
+
+        this.$bus.$on('imgLoad',() =>{
+            this.$refs.scroll.refresh();
+        })
     },
     methods: {
         click(index){
             this.currentindex = index;
+            if(index == 0){
+                this.$refs.scroll.basetop(0,0,200)
+            }
+            if(index == 1){
+                this.$refs.scroll.basetop(0,-15620,300);
+            }
         },
         back(){
             //下面两个的方法都是返回的，go可以指定，第一个就是返回一个
             //this.$router.back()  //返回一次
             this.$router.go(-1);
+        },
+        detailscroll(location){
+            let show = -(location.y);
+            this.showtop = show>1000
+        },
+        basetops(){
+            this.$refs.scroll.basetop(0,0)
         }
     }
 };
@@ -140,6 +200,7 @@ export default {
      
       height:100vh; 
       overflow: hidden;
+      border: 1px solid red;
   }
   .navbar{
       position:fixed;
@@ -179,5 +240,17 @@ export default {
   .images{
       position: relative;
       top: 70px;
+  }
+  .goodss{
+      position: relative;
+      top: 200px;
+  }
+  .basetop{
+      position: absolute;
+      z-index: 12;
+      top: 50%;
+      left: 70%;
+     width: 100px;
+     height: 100px;
   }
 </style>

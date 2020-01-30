@@ -16,7 +16,8 @@
     export default {
         data(){
             return {
-                scroll:''
+                scroll:'',
+                num:0
             }
         },
         props:{
@@ -31,7 +32,9 @@
         },
         mounted(){  /* 在组件创建好之后，他可以获取挂载的元素 */
           this.scroll = new BScroll(this.$refs.wrapper,{
-                probeType:3,
+                click:true,//想让betterscroll中的div可以点击就写这个
+               
+               probeType:3,
                 //0是啥也不能干       1是开启滚动好像是
                 //2是不能监听惯性滚动  3是可以监听所有的
                 /* 为了使组件有选择性，需要在外部传入true，不然默认是一个false */
@@ -46,6 +49,8 @@
                  /* 只要这里函数执行了外面你用的事件的函数，
                  他会自动的调用函数的 */
               this.$emit('scroll',location)
+              this.$emit('detail',location)
+              
           })
           
 
@@ -67,8 +72,9 @@
                this.scroll && this.scroll.scrollTo(x,y,time);
             },
             refresh(){
+                this.num +=1;
                 this.scroll.refresh();
-                console.log('betterScroll一共刷新了');
+                /* console.log('betterScroll一共刷新了' + this.num +'次'); */
                 
             },
             getscrollY(){  //把y值返回出去

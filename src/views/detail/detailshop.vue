@@ -5,11 +5,12 @@
         </div>
         <div class="div2">
             <div align='center'> 
-                    <p>{{shop.sells}}</p>
+                <!-- 过滤器的使用  关键字 | -->
+                    <p>{{shop.sells | filter}}</p>
                     总销量
             </div>
             <div align='center'>
-                <p>{{shop.goodsCount}}</p>
+                <p>{{shop.goodsCount | filters}}</p>
                 全部宝贝
             </div>
             <div >
@@ -49,6 +50,22 @@ export default {
     },
     methods: {
 
+    },
+    filters:{
+        filter(value){
+            let result = value;
+            if(result >= 10000){
+                result = (result/10000).toFixed(1) + "万";
+                return result
+            }
+        },
+        filters(value){
+            let result = value
+            if(result > 100 ){
+                result = (result/100).toFixed(1) + "百"
+            } 
+            return result
+        }
     }
 };
 </script>
