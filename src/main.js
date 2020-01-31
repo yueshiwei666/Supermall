@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import $ from 'jquery'
-
+import store from './store'
 import router from './router'  
 //这个router文件下的index文件不用写，vue会自动的查找index文件的
 
@@ -15,8 +15,10 @@ Vue.prototype.$ = $;
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
+
 
 
 

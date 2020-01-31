@@ -36,7 +36,7 @@
 
                   //当一张图片加载完成就对scroll做一个刷新  refresh()
                  
-                  
+                  this.$emit('imgLoad')
                   /* 用的时候就  this.$bus.$on('事件的名字'，执行的函数) */
              }
         }

@@ -50,7 +50,7 @@ export default {
     },
     methods: {
         img(){
-            this.$bus.$emit('img')
+            this.$emit('img')
         }
     },
     filters:{

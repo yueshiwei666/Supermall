@@ -36,7 +36,7 @@ export default {
     },
     methods: {
         image(){
-            this.$bus.$emit('image');
+            this.$emit('image');
             //当图片的数量全部都加载好了，才开始对scroll的refresh（）
             /* if(++this.number == this.length){
                 this.$bus.$emit('image');

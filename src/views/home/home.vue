@@ -15,6 +15,14 @@
                   ref="top"
                   v-show='show_hide_top'></base-top>
 
+        <!-- 防止text三个数据被scroll滑动消失 -->
+         <texts v-show="show_text"
+                :text="arr"
+                class="textss"
+                @textclick='textclick'
+                ref="text2" ></texts>
+
+
     <BScroll class="content" 
              ref="scroll"
              @scroll='monitor'
@@ -41,7 +49,10 @@
         </div>
 
         <!-- 三个滑动的标题效果展示 -->
-        <texts :text="arr" class="texts" @textclick='textclick' ></texts>
+        <texts :text="arr"
+               class="texts"
+               @textclick='textclick'
+               ref="text1"></texts>
 
         <!-- 展示商品的数据 -->
         <goods :goods="goodss"></goods>
@@ -166,6 +177,8 @@ import texts from "./home_components/text.vue";
 import goods from 'components/public/HomeGoods/goods'
 /* 返回顶部的点击按钮 */
 import baseTop from 'components/public/baseTop/baseTop.vue'
+
+
 //插件
 //使用axios请求的数据
 import { homedata,homedata2} from "network/homedata.js";
@@ -195,7 +208,8 @@ export default {
       },
       type:'pop',
       show_hide_top:false,
-      saveY:0
+      saveY:0,
+      show_text:false
     }
   },
   computed: {
@@ -217,6 +231,8 @@ export default {
     monitor(location){
       let num = -(location.y)
       this.show_hide_top = num > 500
+      
+      this.show_text = num > 631
       //num > 500 ? this.show_hide_top = true :this.show_hide_top = false 
     },
     top(){   /* 点击回到顶部的函数 */
@@ -233,6 +249,9 @@ export default {
        if(index == 2){
          this.type = 'sell'
        }
+       /* 让两个text的文字组件都保持一致的  文字的显示 */
+       this.$refs.text1.current_index = index;
+       this.$refs.text2.current_index = index;
     },
 
     /* 网络请求相关的方法 */
@@ -309,8 +328,8 @@ export default {
        //在离开之前就记录home组件的位置
        this.saveY = this.$refs.scroll.getscrollY();
   },
-  stroyed(){
-     //不详
+  stroyed(){    //好像是啊
+     //不详   不在app中使用keep-alive发挥作用
     console.log('穿件的函数');
   },
   destroyed() {  //消失之前执行的函数的内容
@@ -363,5 +382,11 @@ export default {
    right: 0%;
    
 }
-
+.textss{
+  width: 100%;
+  top: 44px;
+  background: #fff;
+  position: fixed;
+  z-index: 11;
+}
 </style>
