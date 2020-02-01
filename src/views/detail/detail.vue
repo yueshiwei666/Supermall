@@ -15,6 +15,7 @@
             </div>
         </nav-bar>
 
+        {{$store.state.shop}}
         <!-- 返回顶部的按钮啊 -->
         <basetop v-show="showtop"
                  class="basetop"
@@ -230,8 +231,7 @@ export default {
             product.iid = this.detail;
             product.trueprice = this.goods.oldPrice;
             console.log(product);
-             
-            console.log('在这里吧这些数据都给拿走吧' +this.$store.state.qqqq);
+            this.$store.commit('addshop',product);
         }
     },
             //当页面只要一发生变化就执行函数updated中的内容的

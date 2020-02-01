@@ -5,12 +5,17 @@ Vue.use(Vuex)
 //通过vuex创建一个vuex的实例
 const store = new Vuex.Store({
     state:{
-        qqqq:['我是vuex保存的数据']
+        shop:[],//用数据，可以用length来判断他有几个商品
     },
     mutations:{
-        addCart(state,payload){
-           return '------------------'
+        addshop(state,shop){
+            state.shop = shop
+            return state.shop
         }
+    },
+    getters:{
+       
+
     } 
 })
 //把vuex的实例导出即可

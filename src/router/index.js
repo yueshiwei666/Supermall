@@ -11,7 +11,7 @@ const home = () => import('views/home/home.vue')
 const myself = () => import('views/myself/myself.vue')
 const shopping = () => import('views/shopping/shopping.vue')
 const detail =() => import('views/detail/detail.vue')
-
+const vuex =() => import('views/shopping/vuex.vue')
 //安装vue-router
 Vue.use(VueRouter)
 
@@ -41,6 +41,10 @@ const routes = [
                             //括号后面可以修改的值
         path:'/detail/:iid',  /* 这个iid是数据，没有他详情页面不能做 */
         component:detail
+    },
+    {
+        path:'/vuex', //在购物车中高了个vuex的实验
+        component:vuex
     }
 ]
    
