@@ -318,18 +318,18 @@ export default {
      this.getHomegoods('sell')
   },
   activated() { //活跃的组件执行的函数内容
-    //在app中使用<keep-alive>发挥作用
+    //使用<keep-alive>发挥作用,这个组件需要在路由中才发挥作用
       this.$refs.scroll.scrollTo(0,this.saveY)
        //防止进入home页面不能滚动，最好对scroll做一个刷新
       this.$refs.scroll.refresh();
   },
   deactivated() {  //死亡之前执行的函数
-   //在app中使用<keep-alive>发挥作用
+   //使用<keep-alive>发挥作用这个组件需要在路由中发挥作用
        //在离开之前就记录home组件的位置
        this.saveY = this.$refs.scroll.getscrollY();
   },
-  stroyed(){    //好像是啊
-     //不详   不在app中使用keep-alive发挥作用
+  stroyed(){   
+     //不详   不在app中使用keep-alive发挥作用好像是啊
     console.log('穿件的函数');
   },
   destroyed() {  //消失之前执行的函数的内容

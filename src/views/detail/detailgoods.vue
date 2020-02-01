@@ -45,7 +45,7 @@ export default {
     },
     watch:{
           //防止获取到的imgaes是一个空的对象，这样
-        //watch可以监听数据的变化，这里就监听images为了获取图片的个数
+        //watch可以监听数据的变化在内部写上data.监听变化的那个数据 最后加个()来用，这里就监听images为了获取图片的个数
         images(){ //这个是props的监听的函数，根据props是谁，就写一个哈数
         //防止玩意请求数据慢了。images是空的就报错了
             this.length = this.images.detailImage[0].list.length;

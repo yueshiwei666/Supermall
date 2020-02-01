@@ -15,7 +15,7 @@
             </div>
         </nav-bar>
 
-        {{$store.state.shop}}
+       
         <!-- 返回顶部的按钮啊 -->
         <basetop v-show="showtop"
                  class="basetop"
@@ -230,8 +230,11 @@ export default {
             product.price = this.goods.newPrice
             product.iid = this.detail;
             product.trueprice = this.goods.oldPrice;
-            console.log(product);
-            this.$store.commit('addshop',product);
+
+            //使用vuex把用户添加的购物车的那些东西都方法哦vuex数据中做保存
+            //用store中的actions中来调用方法
+            this.$store.dispatch('addshop', product)       
+            
         }
     },
             //当页面只要一发生变化就执行函数updated中的内容的
@@ -267,7 +270,7 @@ export default {
      
       height:100vh; 
       overflow: hidden;
-      border: 1px solid red;
+     
   }
   .navbar{
       position:fixed;
