@@ -1,6 +1,6 @@
 export default{
     //payload是承载负荷说白了就是外面的形参   
-    addshop(context,payload){
+    /* addshop(context,payload){
         //context是store，代表上下文的意思
         //查看store中shop保存的数据和  用户点击的商品的iid是不是一样的
         //一样就把这个商品加1
@@ -24,5 +24,5 @@ export default{
             context.commit('newshop',payload)
         }
         
-       }
+       } */
 }

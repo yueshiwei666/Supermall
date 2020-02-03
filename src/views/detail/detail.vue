@@ -223,17 +223,24 @@ export default {
             /* console.log(this.tabbar); */
         },
         addToCartt(){
+            console.log(this.goods);
+            
             let product = {}
             product.image = this.slideshow[0];
             product.title = this.goods.title;
             product.desc = this.goods.desc;
             product.price = this.goods.newPrice
             product.iid = this.detail;
-            product.trueprice = this.goods.oldPrice;
+            product.trueprice = this.goods.realPrice;
 
             //使用vuex把用户添加的购物车的那些东西都方法哦vuex数据中做保存
             //用store中的actions中来调用方法
-            this.$store.dispatch('addshop', product)       
+            //this.$store.dispatch('addshop', product)  
+            this.$store.commit('addshop',product).then(result=>{
+                console.log(result);
+                
+            }) 
+              
             
         }
     },

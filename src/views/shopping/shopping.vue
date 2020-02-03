@@ -5,11 +5,8 @@
             <span slot="center">购物车({{num}})</span>
         </navbar>
 
-        <list></list>
-
-
-
-
+        <list class="list"></list>
+        <buy class="buy"></buy>
 
     </div>
 </template>
@@ -17,6 +14,7 @@
 <script>
 import navbar from 'components/public/购物街.vue'
 import list from './child/shoplist'
+import buy from './child/buy'
 
 import {mapGetters} from 'vuex'
     export default {
@@ -27,17 +25,22 @@ import {mapGetters} from 'vuex'
         },
         components:{
             navbar,
-            list
+            list,
+            buy
         },
         computed: {
             //这个对this.$store.state中的getters中的方法都全部的做一个解构的
             //就是把那个getters中的方法都导入到这里...就是做一个方法的解构就可以挨个挨个来使用了
                //这种方式名字不能自己来取...mapGetters(['shoping_length'])
             //因为store中的getters中的用法类似计算属性的所以可以直接调用它来这里
-            ...mapGetters({
+            /* ...mapGetters({
                 //这种方式名字不能自己来取...mapGetters(['shoping_length'])
-                num:'shoping_length'
-            })
+                num:'shoping_length',
+                www:'shoplist'
+            }) */
+            num(){
+                return this.$store.state.shop.length
+            }
         },
         methods: {
             vuex(){
@@ -60,5 +63,10 @@ import {mapGetters} from 'vuex'
     font-weight: 900;
     line-height: 45px;
 }
-
+.buy{
+    height: 30px;
+    position: fixed;
+    top: 87%;
+    background: rgb(228, 222, 222);
+}
 </style>

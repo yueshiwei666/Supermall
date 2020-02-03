@@ -2,82 +2,20 @@
     <div class="div">
         <scroll class="scroll"
                 ref='scroll'>
-            <div>
-                <div>
-                    <div>11111111111111111</div><div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div><div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div><div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                <div>11111111111111111</div>
-                </div>
-            </div>
-           <div v-for="(value,index) in shoplist" :key="index">
-                {{value}}
-                
-                
-           </div>
+            <listItem class="item"
+                     v-for="value in shoplist"
+                      :key="value.iid"
+                      :value='value'></listItem>
         </scroll>
+        
     </div>
 </template>
 
 <script>
 import {mapGetters} from 'vuex'
 import scroll from 'plug-in/滚动的插件/BetterScroll.vue'
+import listItem from './listItem'
+
 export default {
 
     data() {
@@ -86,10 +24,14 @@ export default {
         };
     },
     components:{
-        scroll
+        scroll,
+        listItem
     },
     computed: {
-        ...mapGetters(['shoplist'])
+        /* ...mapGetters(['shoping_length','shoplist']) */
+        shoplist(){
+            return this.$store.state.shop
+        }
     },
     props:{
     /*获取父元素传递过来的值*/
@@ -107,6 +49,7 @@ export default {
 
     },
     activated() {
+         console.log('1111111111+++++++++');
        this.$refs.scroll.refresh();
     },
     deactivated(){
@@ -127,6 +70,7 @@ export default {
 
 <style scoped>
 .div{
+  
      padding: 0;
     margin: 0;
     position: relative;
@@ -137,7 +81,12 @@ export default {
     padding: 0;
     margin: 0;
     height:91vh;
-
+    position: relative;
+    top:-40px;
     overflow: hidden;
 }
+.item{
+   margin: 0px 0px 10px;
+}
+
 </style>
