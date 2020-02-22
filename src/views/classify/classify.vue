@@ -1,6 +1,6 @@
 <template>
-    <div id=""> <!--  -->
-      
+    <div id=""> <!--  -->   
+        <el-button type="primary" icon="el-icon-delete"></el-button>
     </div>
 </template>
 
@@ -17,5 +17,9 @@
         height: 500px;
         background: red;
        
+    }
+    .el{
+        width: 100px;
+        height: 50px;
     }
 </style>
