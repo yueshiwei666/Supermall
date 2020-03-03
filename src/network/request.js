@@ -10,7 +10,7 @@ export function request(config) {   //首页轮播图还有推荐的数据
         timeout:5000
     })
     
-    //这个axios创建的实例，在内部自动返回一个reprmise
+    //这个axios创建的实例，在内部自动返回一个promise
     return instance(config)
 }
 
