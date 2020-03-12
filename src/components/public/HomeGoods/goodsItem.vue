@@ -55,8 +55,9 @@
     .p{
         width: 100%;
         font-size: 13px;
-        overflow: hidden;
 
+        /* 三个同事用才行啊 */
+        overflow: hidden;
         text-overflow:ellipsis;  /* 文本溢出时设置成省略 */
          /* 不换行 */
         white-space:nowrap;     /* 文本单行显示 */
